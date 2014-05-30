@@ -22,7 +22,7 @@
             {
                 url: '/',
                 config: {
-                    templateUrl: 'app/dashboard/dashboard.html',
+                    templateUrl: 'ng/dashboard/dashboard.html',
                     title: 'dashboard',
                     settings: {
                         nav: 1,
@@ -33,7 +33,7 @@
                 url: '/admin',
                 config: {
                     title: 'admin',
-                    templateUrl: 'app/admin/admin.html',
+                    templateUrl: 'ng/admin/admin.html',
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-lock"></i> Admin'
