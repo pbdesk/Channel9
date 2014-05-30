@@ -10,7 +10,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3E6D55
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Channel9SPAApp", "http://localhost:62381", "{56D48B7F-BE29-44F5-9A00-FEF886EEDFF3}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_62381"
+		Debug.AspNetCompiler.PhysicalPath = "Channel9SPAApp\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62381\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_62381"
+		Release.AspNetCompiler.PhysicalPath = "Channel9SPAApp\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62381\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "Channel9SPAApp\"
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56D48B7F-BE29-44F5-9A00-FEF886EEDFF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56D48B7F-BE29-44F5-9A00-FEF886EEDFF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
