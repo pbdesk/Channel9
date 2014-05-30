@@ -5,11 +5,12 @@
 
     function MyLogger($log) {
         var service = {
-            getLogFn: getLogFn,
-            log: log,
-            logError: logError,
-            logSuccess: logSuccess,
-            logWarning: logWarning
+            GetLogFn: getLogFn,
+            Log: log,
+            Error: logError,
+            Success: logSuccess,
+            Warning: logWarning,
+            Info: log
         };
 
         return service;
@@ -33,7 +34,7 @@
             };
         }
 
-        function log(message, data, source, showToast) {
+        //function log(message, data, source, showToast) {
             logIt(message, data, source, showToast, 'info');
         }
 
@@ -50,20 +51,86 @@
         }
 
         function logIt(message, data, source, showToast, toastType) {
-            var write = (toastType === 'error') ? $log.error : $log.log;
+            //var write = (toastType === 'error') ? $log.error : $log.log;
             source = source ? '[' + source + '] ' : '';
-            write(source, message, data);
-            if (showToast) {
-                if (toastType === 'error') {
-                    toastr.error(message);
-                } else if (toastType === 'warning') {
-                    toastr.warning(message);
-                } else if (toastType === 'success') {
-                    toastr.success(message);
-                } else {
-                    toastr.info(message);
-                }
+            //write(source, message, data);
+
+            switch (toastType.toLowerCase()) { // convert aliases
+                case 'success':
+                    {
+                        $log.info('Success: ' + message, data);
+                        if (showToast) {
+                            toastr.success(message);
+                        }
+                        break;
+                    }
+                case 'error':
+                    {
+                        $log.error('Error: ' + message, data);
+                        if (showToast) {
+                            toastr.error(message);
+                        }
+                        break;
+                    }
+                case 'warn':
+                    {
+                        $log.warn('Warning: ' + message, data);
+                        if (showToast) {
+                            toastr.warning(message);
+                        }
+                        break;
+                    }
+                case 'warning':
+                    {
+                        $log.warn('Warning: ' + message, data);
+                        if (showToast) {
+                            toastr.warning(message);
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        $log.info('Info: ' + message, data);
+                        if (showToast) {
+                            toastr.info(message);
+                        }
+                        break;
+                    }
+
             }
+
+            //if (toastType === 'error') {
+            //    $log.error('Error: ' + message, data);
+            //    if (showToast) {
+            //        toastr.error(message);
+            //    }
+            //} else if (toastType === 'warning') {
+            //    $log.warn('Warning: ' + message, data);
+            //    if (showToast) {
+            //        toastr.warning(message);
+            //    }
+            //} else if (toastType === 'success') {
+            //    $log.info('Success: ' + message, data);
+            //    if (showToast) {
+            //        toastr.success(message);
+            //    }
+            //} else {
+            //    $log.info('Info: ' + message, data);
+            //    if (showToast) {
+            //        toastr.info(message);
+            //    }
+            //}
+            //if (showToast) {
+            //    if (toastType === 'error') {
+            //        toastr.error(message);
+            //    } else if (toastType === 'warning') {
+            //        toastr.warning(message);
+            //    } else if (toastType === 'success') {
+            //        toastr.success(message);
+            //    } else {
+            //        toastr.info(message);
+            //    }
+            //}
         }
     }
 })();
