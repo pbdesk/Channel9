@@ -62,16 +62,9 @@ body {
 
 /* #region Main Styles */
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
-.ng-cloak, .x-ng-cloak,
-.ng-hide {
-  display: none !important;
-}
-
-ng\:form {
-  display: block;
-}
-
+.ng-cloak {
+    display: none !important;
+ }
 
 select > option {
     color: black;
@@ -212,7 +205,6 @@ small {
 .navbar .navbar-brand {
     background: url(/content/images/icon.png) no-repeat left center !important;
     margin: 0 1em;
-    font-weight:bold;
 }
 
 .navbar .brand-title {
