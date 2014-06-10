@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'admin';
-    angular.module('app').controller(controllerId, ['common', admin]);
+    angular.module('app').controller(controllerId, ['common', 'C9Data', admin]);
 
-    function admin(common) {
+    function admin(common, C9Data) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 

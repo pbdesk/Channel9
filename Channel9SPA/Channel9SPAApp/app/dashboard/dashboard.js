@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'dashboard';
-    angular.module('app').controller(controllerId, ['common', 'datacontext', dashboard]);
+    angular.module('app').controller(controllerId, ['common', 'datacontext', 'C9Data', dashboard]);
 
-    function dashboard(common, datacontext) {
+    function dashboard(common, datacontext, C9Data) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
@@ -15,6 +15,7 @@
         vm.messageCount = 0;
         vm.people = [];
         vm.title = 'Dashboard';
+        vm.C9Data = C9Data;
 
         activate();
 
