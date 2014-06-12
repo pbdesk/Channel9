@@ -45,7 +45,7 @@
                 url: '/shows',
                 config: {
                     title: 'shows',
-                    templateUrl: 'app/admin/admin.html',
+                    templateUrl: 'app/catitems/catitems.html',
                     settings: {
                         nav: 3,
                         content: '<i class="fa fa-video-camera"></i> Shows'
@@ -56,7 +56,7 @@
                 url: '/series',
                 config: {
                     title: 'series',
-                    templateUrl: 'app/admin/admin.html',
+                    templateUrl: 'app/catitems/catitems.html',
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-film"></i> Series'

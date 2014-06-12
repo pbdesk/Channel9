@@ -1,0 +1,55 @@
+﻿<section class="mainbar" data-ng-controller="catitems as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-addon"><i class="fa fa-filter"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="btn-group pull-right">
+                                    <button type="button" class="btn btn-primary" ng-click="vm.ChangeLayout(1)" ng-disabled="vm.Layout==1"><i class="fa fa-th-list"></i></button>
+                                    <button type="button" class="btn btn-primary" ng-click="vm.ChangeLayout(2)" ng-disabled="vm.Layout==2"><i class="fa fa-th"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="vm.Layout==2">
+                            <div class="col-md-3" ng-repeat="item in vm.Items">
+                                <img ng-src="{{item.imageUrl}}" />
+                                <span>{{item.title}}</span>
+                            </div>
+                        </div>
+                        
+                        <table class="table table-striped table-hover" ng-show="vm.Layout==1">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Tags</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in vm.Items">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.title}}</td>
+                                    <td>Otto</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

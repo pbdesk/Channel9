@@ -42,27 +42,19 @@
                     <div class="widget wviolet">
                         <div data-cc-widget-header title="Featured Shows"
                              allow-collapse="true"></div>
-                        <div class="widget-content text-center text-info">
+                        <div class="widget-content text-info">
                             <table class="table table-condensed table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Age</th>
-                                        <th>Location</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
-                                    <tr data-ng-repeat="p in vm.people">
-                                        <td>{{p.firstName}}</td>
-                                        <td>{{p.lastName}}</td>
-                                        <td>{{p.age}}</td>
-                                        <td>{{p.location}}</td>
+                                    <tr data-ng-repeat="p in vm.C9Data.FeaturedShows">
+                                        <td>{{p.title}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="widget-foot">
+                            <div class="pull-right">
+                                <a href="#/shows">More...</a>
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -71,10 +63,19 @@
                     <div class="widget wgreen">
                         <div data-cc-widget-header title="Featured Series"
                              allow-collapse="true"></div>
-                        <div class="widget-content text-center text-info">
-                            <small>{{vm.news.description}}</small>
+                        <div class="widget-content  text-info">
+                            <table class="table table-condensed table-striped">
+                                <tbody>
+                                    <tr data-ng-repeat="p in vm.C9Data.FeaturedSeries">
+                                        <td>{{p.title}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="widget-foot">
+                            <div class="pull-right">
+                                <a href="#/series">More...</a>
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
