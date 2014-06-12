@@ -33,33 +33,33 @@
             {
                 url: '/recent',
                 config: {
-                    title: 'admin',
+                    title: 'rss',
                     templateUrl: 'app/admin/admin.html',
                     settings: {
                         nav: 2,
-                        content: '<i class="fa fa-lock"></i> Recent'
+                        content: '<i class="fa fa-rss"></i> Latest Feeds'
                     }
                 }
             },
             {
                 url: '/shows',
                 config: {
-                    title: 'admin',
+                    title: 'shows',
                     templateUrl: 'app/admin/admin.html',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-lock"></i> Shows'
+                        content: '<i class="fa fa-video-camera"></i> Shows'
                     }
                 }
             },
             {
                 url: '/series',
                 config: {
-                    title: 'admin',
+                    title: 'series',
                     templateUrl: 'app/admin/admin.html',
                     settings: {
                         nav: 4,
-                        content: '<i class="fa fa-lock"></i> Series'
+                        content: '<i class="fa fa-film"></i> Series'
                     }
                 }
             },
@@ -70,7 +70,7 @@
                     templateUrl: 'app/admin/admin.html',
                     settings: {
                         nav: 5,
-                        content: '<i class="fa fa-lock"></i> Admin'
+                        content: '<i class="fa fa-info"></i> About'
                     }
                 }
             }
