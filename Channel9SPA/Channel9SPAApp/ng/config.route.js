@@ -22,7 +22,7 @@
             {
                 url: '/',
                 config: {
-                    templateUrl: 'app/dashboard/dashboard.html',
+                    templateUrl: 'ng/dashboard/dashboard.html',
                     title: 'dashboard',
                     settings: {
                         nav: 1,
@@ -34,7 +34,7 @@
                 url: '/recent',
                 config: {
                     title: 'rss',
-                    templateUrl: 'app/admin/admin.html',
+                    templateUrl: 'ng/admin/admin.html',
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-rss"></i> Latest Feeds'
@@ -45,7 +45,7 @@
                 url: '/shows',
                 config: {
                     title: 'shows',
-                    templateUrl: 'app/catitems/catitems.html',
+                    templateUrl: 'ng/catitems/catitems.html',
                     settings: {
                         nav: 3,
                         content: '<i class="fa fa-video-camera"></i> Shows'
@@ -56,7 +56,7 @@
                 url: '/series',
                 config: {
                     title: 'series',
-                    templateUrl: 'app/catitems/catitems.html',
+                    templateUrl: 'ng/catitems/catitems.html',
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-film"></i> Series'
@@ -67,7 +67,7 @@
                 url: '/admin',
                 config: {
                     title: 'admin',
-                    templateUrl: 'app/admin/admin.html',
+                    templateUrl: 'ng/admin/admin.html',
                     settings: {
                         nav: 5,
                         content: '<i class="fa fa-info"></i> About'
