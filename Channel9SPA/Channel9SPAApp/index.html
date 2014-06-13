@@ -60,19 +60,12 @@
     <script src="scripts/moment.js"></script>
     <script src="scripts/spin.js"></script>
 
-    <!-- Libs -->
     <script src="ng/libs/angular-cache/angular-cache.js"></script>
     <script src="ng/libs/ui-bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
     <script src="ng/libs/GoogleFeedsApp/GoogleFeedsApp.js"></script>
 
-    <!-- Bootstrapping -->
-    <script src="ng/app.js"></script>
-    <script src="ng/config.js"></script>
-    <script src="ng/config.exceptionHandler.js"></script>
-    <script src="ng/config.route.js"></script>
-    <script src="ng/app.data.js"></script>
+    <script src="ng/apps/Channel9App.js"></script>
 
-    <!-- common Modules -->
     <script src="ng/common/common.js"></script>
     <script src="ng/common/logger.js"></script>
     <script src="ng/common/spinner.js"></script>
@@ -88,15 +81,15 @@
     <script src="ng/layout/sidebar.js"></script>
 
     <!-- app Services -->
-    <script src="ng/services/datacontext.js"></script>
+    <!--<script src="ng/services/datacontext.js"></script>-->
     <script src="ng/services/directives.js"></script>
 
     <script type="text/javascript">
-    google.load("feeds", "1");
+        google.load("feeds", "1");
 
-    google.setOnLoadCallback(function () {
-        angular.bootstrap(document, ['PBDesk.Channel9.App']);
-    });
+        google.setOnLoadCallback(function () {
+            angular.bootstrap(document, ['PBDesk.Channel9.App']);
+        });
     </script>
 
 </body>
