@@ -3,7 +3,7 @@
 (function () {
     'use strict';
     
-    var app = angular.module('app');
+    var app = angular.module('PBDesk.Channel9.App');
 
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
@@ -16,7 +16,7 @@
     // Extend the $exceptionHandler service to also display a toast.
     function extendExceptionHandler($delegate, config, logger) {
         var appErrorPrefix = config.appErrorPrefix;
-        var logError = logger.getLogFn('app', 'error');
+        var logError = logger.getLogFn('PBDesk.Channel9.App', 'error');
         return function (exception, cause) {
             $delegate(exception, cause);
             if (appErrorPrefix && exception.message.indexOf(appErrorPrefix) === 0) { return; }

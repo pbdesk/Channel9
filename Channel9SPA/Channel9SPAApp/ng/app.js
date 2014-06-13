@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
     
-    var app = angular.module('app', [
+    var app = angular.module('PBDesk.Channel9.App', [
         // Angular modules 
         'ngAnimate',        // animations
         'ngRoute',          // routing

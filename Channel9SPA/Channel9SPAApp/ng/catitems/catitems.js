@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'catitems';
-    angular.module('app').controller(controllerId, ['$location', 'common', 'C9Data', catitems]);
+    angular.module('PBDesk.Channel9.App').controller(controllerId, ['$location', 'common', 'C9Data', catitems]);
 
     function catitems($location, common, C9Data) {
         var getLogFn = common.logger.getLogFn;

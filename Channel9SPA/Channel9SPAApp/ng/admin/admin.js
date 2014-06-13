@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'admin';
-    angular.module('app').controller(controllerId, ['common', 'C9Data', admin]);
+    angular.module('PBDesk.Channel9.App').controller(controllerId, ['common', 'C9Data', admin]);
 
     function admin(common, C9Data) {
         var getLogFn = common.logger.getLogFn;

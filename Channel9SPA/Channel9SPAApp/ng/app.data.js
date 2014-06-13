@@ -394,7 +394,7 @@
         
     };
 
-    angular.module('app').constant('C9Items', C9Items);
+    angular.module('PBDesk.Channel9.App').constant('C9Items', C9Items);
 
 
 })();
@@ -403,7 +403,7 @@
     'use strict';
 
     var serviceId = 'C9Data';
-    angular.module('app').factory(serviceId, ['C9Items', C9Data]);
+    angular.module('PBDesk.Channel9.App').factory(serviceId, ['C9Items', C9Data]);
 
     function C9Data(C9Items) {
        

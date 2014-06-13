@@ -2,7 +2,7 @@
     'use strict';
     
     var controllerId = 'shell';
-    angular.module('app').controller(controllerId,
+    angular.module('PBDesk.Channel9.App').controller(controllerId,
         ['$rootScope', 'common', 'config', shell]);
 
     function shell($rootScope, common, config) {

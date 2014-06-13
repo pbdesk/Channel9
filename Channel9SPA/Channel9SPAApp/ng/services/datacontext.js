@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['common', datacontext]);
+    angular.module('PBDesk.Channel9.App').factory(serviceId, ['common', datacontext]);
 
     function datacontext(common) {
         var $q = common.$q;
