@@ -68,8 +68,8 @@
         // Use the 'brown' theme - override default 'blue' theme
 
         $mdThemingProvider.theme('default')
-          .primaryPalette('pink')
-    .accentPalette('orange');
+          .primaryPalette('orange')
+          .accentPalette('purple');
 
       });
 
