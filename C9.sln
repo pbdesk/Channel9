@@ -8,20 +8,20 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Channel9", "http://localhos
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_12551"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\Pinal.Bhatt\Git\GitHub\Channel9\"
+		Debug.AspNetCompiler.PhysicalPath = "..\Channel9\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_12551\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_12551"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\Pinal.Bhatt\Git\GitHub\Channel9\"
+		Release.AspNetCompiler.PhysicalPath = "..\Channel9\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_12551\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\..\..\..\..\..\Pinal.Bhatt\Git\GitHub\Channel9\"
+		SlnRelativePath = "..\Channel9\"
 	EndProjectSection
 EndProject
 Global
