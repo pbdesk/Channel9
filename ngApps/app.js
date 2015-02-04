@@ -63,6 +63,14 @@
   angular
       .module('starterApp', ['ngMaterial', 'avatars'])
       .controller('AppCtrl', ['$scope', 'avatarsService', '$mdSidenav', '$mdBottomSheet', '$log', AvatarAppController ])
+      .controller('LeftCtrl', function($scope, $timeout, $mdSidenav, $log) {
+            $scope.close = function() {
+                $mdSidenav('left').close()
+                      .then(function(){
+                        $log.debug("close LEFT is done");
+                      });
+                };
+      })
       .config(function($mdThemingProvider) {
 
         // Use the 'brown' theme - override default 'blue' theme
