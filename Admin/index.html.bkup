@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="PBDesk.C9Admin" ng-controller="C9AdminCtrl as VM">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <!-- Title here -->
@@ -39,7 +39,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="../assets/js/c9.configs.js"></script>
+
 </head>
 
 <body>
@@ -594,28 +594,10 @@
         </div>
     </div>
 
-    <!-- Modals -->
-    <div class="modal fade" id="not_in_role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Not Authorized</h4>
-                </div>
-                <div class="modal-body">
-                    Your credentials dont have access to this part of the application.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="VM.logout()">Logout</button>
-                    <a type="button" class="btn btn-primary" href="/">Cancel</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- JavaScript files -->
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>    
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Easing JS -->
@@ -626,8 +608,8 @@
     <!-- Pretty Photo, Isotope JS -->
     <script src="../assets/js/jquery.prettyPhoto.js"></script>
     <script src="../assets/js/isotope.js"></script>
-
-
+    
+    
     <!-- Custom JS -->
     <script src="../assets/js/custom.js"></script>
 
@@ -651,13 +633,8 @@
     <script src="../ngApps/libs/Exception/Exception.factory.js"></script>
     <script src="../ngApps/libs/Exception/Exception.Handler.provider.js"></script>
 
-    <script src="../ngApps/core/Channel9.Core.module.js"></script>
-    <script src="../ngApps/core/Channel9.Core.config.js"></script>
-    <script src="../ngApps/core/Channel9.AuthService.factory.js"></script>
-    <script src="../ngApps/core/Channel9.AuthInterceptorService.factory.js"></script>
 
-    <script src="../ngApps/Admin/app/C9Admin.module.js"></script>
-    <script src="../ngApps/Admin/app/C9Admin.controller.js"></script>
+
 
     <!-- This Page Script -->
     <script>

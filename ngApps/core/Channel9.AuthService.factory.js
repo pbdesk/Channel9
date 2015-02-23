@@ -23,18 +23,13 @@
 
 		var service = {
 		    authData: _authentication,
-			saveRegistration: _saveRegistration,
 			login: _login,
 			logout: _logOut,
 			isLoggedIn: _isLoggedIn,
 			fillAuthData: _fillAuthData,
 			refreshToken: _refreshToken,
 			getUserData: _getUserData,
-			reSendVarificationEmail: _reSendVarificationEmail,
-			sendForgetPasswordEmail: _sendForgetPasswordEmail,
-			confirmEmail: _confirmEmail,
 			authorizationCheck: _authorizationCheck,
-			resetPassword: _resetPassword,
 			getErrStrFromModelState: _getErrStrFromModelState
 		};
 
@@ -56,18 +51,7 @@
 
 		};
 
-		function _saveRegistration(registration) {
-
-			_logOut();
-
-			registration.clientId = C9Settings.clientId;
-			registration.confirmationUrl = C9Settings.confirmationUrl;
-			return $http.post(serviceBase + 'Register', registration)
-				.then(function (response) {
-				return response;
-			});
-
-		};
+		
 
 		function _login(loginData) {
 
@@ -166,55 +150,12 @@
 
 		}
 
-		function _sendForgetPasswordEmail(email){
-
-			var data = "email=" + encodeURI(email) + "&url=" + encodeURI(C9Settings.forgetPasswordUrl);
-			var deferred = $q.defer();
+	
 
 
-			$http.post(serviceBase + 'Password/Forgot', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-				.success(function (response) {					
-					deferred.resolve(response);
-
-				}).error(function (data, status, headers, config) {
-					deferred.reject(data);
-				});
-
-			
-			return deferred.promise;
-		}
 
 
-		function _reSendVarificationEmail(email) {
-			var deferred = $q.defer();
-			//SendConfirmationEmail
-			//   ConfirmEmail
-			$http.get(serviceBase + 'SendConfirmationEmail?email=' + escape(email) + '&url=' + escape(C9Settings.confirmationUrl))
-			.success(function (result, status, headers, config) {
-				deferred.resolve(result);
-			})
-			.error(function (result, status, headers, config) {
-				deferred.reject(result, status);
-			});
-			return deferred.promise;
-		}
-
-		function _confirmEmail(confirmEmailData) {
-
-			var data = "email=" + encodeURI(confirmEmailData.email) + "&password=" + encodeURI(confirmEmailData.password) + "&code=" + encodeURI(confirmEmailData.code);
-			var deferred = $q.defer();
-
-			$http.post(serviceBase + 'ConfirmEmail', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-				.success(function (response) {					
-					deferred.resolve(response);
-
-				}).error(function (data, status, headers, config) {
-					deferred.reject(data);
-				});
-		   
-			return deferred.promise;
-		}
-
+	
 		function _getPRole(roles) {
 			var prole = '';
 			if (roles)
@@ -224,33 +165,27 @@
 						roles = roles.split(",");
 					}
 					else {
-						prole = roles;
+					    if (prole === C9Settings.allowedRole) {
+					        prole = roles;
+					    }						
 					}
 				}
 				if ($.isArray(roles)) {
-					if ($.inArray('Admin', roles) >= 0) {
-						prole = 'Admin';
-					}
-					else if ($.inArray('Member', roles) >= 0) {
-						prole = 'Member';
-					}
+				    if ($.inArray(C9Settings.allowedRole, roles) >= 0) {
+				        prole = C9Settings.allowedRole;
+					}					
 				}
 			}
-			
-			
+						
 			return prole;
 		}
 
 		function _authorizationCheck() {
 			if(!_isLoggedIn())
 			{
-				window.location = C9Settings.loginUrl; //"/account/#/login";
+				window.location = C9Settings.loginUrl; 
 			}
-			//var authData = localStorageService.get('authorizationData');
-			//if (!authData) {
-			//    window.location = C9Settings.loginUrl; //"/account/#/login";
-
-			//}
+			
 		}
 
 		function _isLoggedIn() {
@@ -272,24 +207,7 @@
 		    
 		}
 
-		function _resetPassword(resetPwdData) {
-		    var data = "email=" + encodeURI(resetPwdData.email)
-		    			+ "&password=" + encodeURI(resetPwdData.password)
-		    			+ "&confirmPassword=" + encodeURI(resetPwdData.confirmPassword)
-		    			+ "&code=" + encodeURI(resetPwdData.code);
 
-		    var deferred = $q.defer();
-
-		    $http.post(serviceBase + 'Password/Reset', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-				.success(function (response) {
-				    deferred.resolve(response);
-
-				}).error(function (data, status, headers, config) {
-				    deferred.reject(data);
-				});
-
-		    return deferred.promise;
-		}
 
 		
 
