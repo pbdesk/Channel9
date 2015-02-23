@@ -1,13 +1,14 @@
 ﻿(function () {
 	'use strict';
 
-	var coreApp = angular.module('PBDesk.IdSys.Core');
+	var coreApp = angular.module('PBDesk.C9Core');
 
-	var appUrl = 'http://localhost:28000/';
-	coreApp.constant('IdSysSettings', {
-		apiServiceBaseUrl:  appUrl + 'IdSys/api/',
+	var appUrl = 'http://localhost:12551/';
+	var idSysUrl = 'http://idsys.azurewebsites.net/';
+	coreApp.constant('C9Settings', {
+	    apiServiceBaseUrl: idSysUrl + 'IdSys/api/',
 		clientBaseUrl: appUrl,
-		clientId: 'selfLocalHost',
+		clientId: 'C9LocalHost',
 		confirmationUrl: appUrl + 'account/#/ConfirmEmail',
 		loginUrl: '/account/#/login',
 		forgetPasswordUrl: appUrl + 'account/#/resetPassword'

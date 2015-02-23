@@ -1,9 +1,9 @@
 ﻿(function () {
 	'use strict';
 
-	var coreApp = angular.module('PBDesk.IdSys.Core', [
+	var coreApp = angular.module('PBDesk.C9Core', [
 		'ngAnimate', 'ngRoute', 'ngCookies', 'LocalStorageModule', 'angular-loading-bar',
-		'PBDesk.Toastr', 'PBDesk.Logger', 'PBDesk.Exception', 'PBDesk.Router'
+		'PBDesk.Toastr', 'PBDesk.Logger', 'PBDesk.Exception'
 	]);
 
 
@@ -14,7 +14,7 @@
 
 	coreApp.config(function (localStorageServiceProvider) {
 		localStorageServiceProvider
-		  .setPrefix('IdSys');
+		  .setPrefix('C9');
 	});
 
   //  coreApp.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {

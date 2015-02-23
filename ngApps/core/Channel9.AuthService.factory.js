@@ -2,14 +2,14 @@
 	'use strict';
 
 	angular
-		.module('PBDesk.IdSys.Core')
+		.module('PBDesk.C9Core')
 		.factory('AuthService', AuthService);
 
-	AuthService.$inject = ['$http', '$q', 'localStorageService', 'IdSysSettings'];
+	AuthService.$inject = ['$http', '$q', 'localStorageService', 'C9Settings'];
 
-	function AuthService($http, $q, localStorageService, IdSysSettings) {
+	function AuthService($http, $q, localStorageService, C9Settings) {
 
-		var serviceBase = IdSysSettings.apiServiceBaseUrl;
+		var serviceBase = C9Settings.apiServiceBaseUrl;
 		var _authentication = {
 			isAuth: false,
 			userName: "",
@@ -60,8 +60,8 @@
 
 			_logOut();
 
-			registration.clientId = IdSysSettings.clientId;
-			registration.confirmationUrl = IdSysSettings.confirmationUrl;
+			registration.clientId = C9Settings.clientId;
+			registration.confirmationUrl = C9Settings.confirmationUrl;
 			return $http.post(serviceBase + 'Register', registration)
 				.then(function (response) {
 				return response;
@@ -75,7 +75,7 @@
 
 			// if Use Refresh Tokens checkbox is checked on
 			if (loginData.useRefreshTokens) {
-				data = data + "&client_id=" + IdSysSettings.clientId;
+				data = data + "&client_id=" + C9Settings.clientId;
 			}
 
 			var deferred = $q.defer();
@@ -132,7 +132,7 @@
 
 				if (authData.useRefreshTokens) {
 
-					var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=" + IdSysSettings.clientId;
+					var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=" + C9Settings.clientId;
 
 					localStorageService.remove('authorizationData');
 
@@ -168,7 +168,7 @@
 
 		function _sendForgetPasswordEmail(email){
 
-			var data = "email=" + encodeURI(email) + "&url=" + encodeURI(IdSysSettings.forgetPasswordUrl);
+			var data = "email=" + encodeURI(email) + "&url=" + encodeURI(C9Settings.forgetPasswordUrl);
 			var deferred = $q.defer();
 
 
@@ -189,7 +189,7 @@
 			var deferred = $q.defer();
 			//SendConfirmationEmail
 			//   ConfirmEmail
-			$http.get(serviceBase + 'SendConfirmationEmail?email=' + escape(email) + '&url=' + escape(IdSysSettings.confirmationUrl))
+			$http.get(serviceBase + 'SendConfirmationEmail?email=' + escape(email) + '&url=' + escape(C9Settings.confirmationUrl))
 			.success(function (result, status, headers, config) {
 				deferred.resolve(result);
 			})
@@ -244,11 +244,11 @@
 		function _authorizationCheck() {
 			if(!_isLoggedIn())
 			{
-				window.location = IdSysSettings.loginUrl; //"/account/#/login";
+				window.location = C9Settings.loginUrl; //"/account/#/login";
 			}
 			//var authData = localStorageService.get('authorizationData');
 			//if (!authData) {
-			//    window.location = IdSysSettings.loginUrl; //"/account/#/login";
+			//    window.location = C9Settings.loginUrl; //"/account/#/login";
 
 			//}
 		}

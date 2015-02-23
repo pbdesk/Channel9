@@ -2,12 +2,12 @@
 	'use strict';
 
 	angular
-		.module('PBDesk.IdSys.Core')
+		.module('PBDesk.C9Core')
 		.factory('AuthInterceptorService', AuthInterceptorService);
 
-	AuthInterceptorService.$inject = ['$q', '$injector', '$location', 'localStorageService', 'IdSysSettings', 'Logger'];
+	AuthInterceptorService.$inject = ['$q', '$injector', '$location', 'localStorageService', 'C9Settings', 'Logger'];
 
-	function AuthInterceptorService($q, $injector, $location, localStorageService,IdSysSettings, Logger) {
+	function AuthInterceptorService($q, $injector, $location, localStorageService,C9Settings, Logger) {
 
 		
 
@@ -45,7 +45,7 @@
 				}
 				authService.logout();
 			    //$location.path('/login');
-				window.location = IdSysSettings.loginUrl;
+				window.location = C9Settings.loginUrl;
 			}
 			return $q.reject(rejection);
 		}
