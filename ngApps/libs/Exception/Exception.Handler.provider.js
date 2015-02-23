@@ -4,16 +4,16 @@
     'use strict';
 
     angular
-        .module('blocks.exception')
-        .provider('exceptionHandler', exceptionHandlerProvider)
+        .module('PBDesk.Exception')
+        .provider('ExceptionHandler', ExceptionHandlerProvider)
         .config(config);
 
     /**
      * Must configure the exception handling
      * @return {[type]}
      */
-    function exceptionHandlerProvider() {
-        /* jshint validthis:true */
+    function ExceptionHandlerProvider() {
+      
         this.config = {
             appErrorPrefix: undefined
         };
@@ -41,13 +41,13 @@
     /**
      * Extend the $exceptionHandler service to also display a toast.
      * @param  {Object} $delegate
-     * @param  {Object} exceptionHandler
+     * @param  {Object} ExceptionHandler
      * @param  {Object} logger
      * @return {Function} the decorated $exceptionHandler service
      */
-    function extendExceptionHandler($delegate, exceptionHandler, logger) {
+    function extendExceptionHandler($delegate, ExceptionHandler, Logger) {
         return function(exception, cause) {
-            var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
+            var appErrorPrefix = ExceptionHandler.config.appErrorPrefix || '';
             var errorData = {exception: exception, cause: cause};
             exception.message = appErrorPrefix + exception.message;
             $delegate(exception, cause);
@@ -60,7 +60,7 @@
              * @example
              *     throw { message: 'error message we added' };
              */
-            logger.error(exception.message, errorData);
+            Logger.error(exception.message, errorData);
         };
     }
 })();

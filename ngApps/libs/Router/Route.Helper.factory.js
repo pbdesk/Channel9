@@ -2,15 +2,15 @@
     'use strict';
 
     angular
-        .module('blocks.router')
-        .provider('routehelperConfig', routehelperConfig)
-        .factory('routehelper', routehelper);
+        .module('PBDesk.Router')
+        .provider('RouteHelperConfig', RouteHelperConfig)
+        .factory('RouteHelper', RouteHelper);
 
-    routehelper.$inject = ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig'];
+    RouteHelper.$inject = ['$location', '$rootScope', '$route', 'Logger', 'RouteHelperConfig'];
 
-    // Must configure via the routehelperConfigProvider
-    function routehelperConfig() {
-        /* jshint validthis:true */
+    // Must configure via the RouteHelperConfigProvider
+    function RouteHelperConfig() {
+      
         this.config = {
             // These are the properties we need to set
             // $routeProvider: undefined
@@ -25,14 +25,14 @@
         };
     }
 
-    function routehelper($location, $rootScope, $route, logger, routehelperConfig) {
+    function RouteHelper($location, $rootScope, $route, Logger, RouteHelperConfig) {
         var handlingRouteChangeError = false;
         var routeCounts = {
             errors: 0,
             changes: 0
         };
         var routes = [];
-        var $routeProvider = routehelperConfig.config.$routeProvider;
+        var $routeProvider = RouteHelperConfig.config.$routeProvider;
 
         var service = {
             configureRoutes: configureRoutes,
@@ -48,7 +48,7 @@
         function configureRoutes(routes) {
             routes.forEach(function(route) {
                 route.config.resolve =
-                    angular.extend(route.config.resolve || {}, routehelperConfig.config.resolveAlways);
+                    angular.extend(route.config.resolve || {}, RouteHelperConfig.config.resolveAlways);
                 $routeProvider.when(route.url, route.config);
             });
             $routeProvider.otherwise({redirectTo: '/'});
@@ -68,7 +68,7 @@
                     var destination = (current && (current.title || current.name || current.loadedTemplateUrl)) ||
                         'unknown target';
                     var msg = 'Error routing to ' + destination + '. ' + (rejection.msg || '');
-                    logger.warning(msg, [current]);
+                    Logger.warning(msg, [current]);
                     $location.path('/');
                 }
             );
@@ -97,7 +97,7 @@
                 function(event, current, previous) {
                     routeCounts.changes++;
                     handlingRouteChangeError = false;
-                    var title = routehelperConfig.config.docTitle + ' ' + (current.title || '');
+                    var title = RouteHelperConfig.config.docTitle + ' ' + (current.title || '');
                     $rootScope.title = title; // data bind to <title>
                 }
             );

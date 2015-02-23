@@ -2,10 +2,11 @@
     'use strict';
 
     angular
-        .module('blocks.exception')
+        .module('PBDesk.Exception')
         .factory('exception', exception);
 
-    /* @ngInject */
+    exception.$inject = ['Logger'];
+
     function exception(logger) {
         var service = {
             catcher: catcher

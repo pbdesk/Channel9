@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('blocks.logger')
-        .factory('logger', logger);
+        .module('PBDesk.Logger')
+        .factory('Logger', logger);
 
-    logger.$inject = ['$log', 'toastr'];
+    logger.$inject = ['$log', 'Toastr'];
 
     function logger($log, toastr) {
         var service = {
