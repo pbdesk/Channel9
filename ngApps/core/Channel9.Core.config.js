@@ -8,7 +8,7 @@
 	coreApp.constant('C9Settings', {
 	    apiServiceBaseUrl: idSysUrl + 'IdSys/api/',
 		clientBaseUrl: appUrl,
-		clientId: 'C9LocalHost',		
+		clientId: window.c9Configs.clientId,
 		loginUrl: '/Login',
 		allowedRole: window.c9Configs.allowedRole
 		
