@@ -66,24 +66,16 @@
 
 			$http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
-				if (loginData.useRefreshTokens) {
-					localStorageService.set('authorizationData', { token: response.access_token, refreshToken: response.refresh_token, useRefreshTokens: true, userName: loginData.userName, displayName: response.displayName, roles: response.roles, prole: _getPRole(response.roles) });
-				}
-				else {
-					localStorageService.set('authorizationData', { token: response.access_token, refreshToken: "", useRefreshTokens: false, userName: loginData.userName, displayName: response.displayName, roles: response.roles, prole: _getPRole(response.roles) });
-				}
-
-				_fillAuthData();
-
-				//_authentication.isAuth = true;
-				//_authentication.userName = loginData.userName;
-				//_authentication.useRefreshTokens = loginData.useRefreshTokens;
-				//_authentication.displayName = response.displayName;
-				//_authentication.roles = response.roles;
-				//// // // // // // _authentication.prole = response.prole;
-
-				deferred.resolve(response);
-
+			    var prole = _getPRole(response.roles);
+			    if (prole === C9Settings.allowedRole) {
+			        localStorageService.set('authorizationData', { token: response.access_token, refreshToken: response.refresh_token, useRefreshTokens: true, userName: loginData.userName, displayName: response.displayName, roles: response.roles, prole: prole });
+			        _fillAuthData();
+			        deferred.resolve(response);
+			    }
+			    else {
+			        _logOut();
+			        deferred.reject("Insufficient Credentials");
+			    }								
 			}).error(function (err, status) {
 				_logOut();
 				deferred.reject(err);
@@ -96,7 +88,7 @@
 		function _fillAuthData() {
 
 			var authData = localStorageService.get('authorizationData');
-			if (authData) {
+			if (authData && authData.prole === C9Settings.allowedRole) {
 				_authentication.isAuth = true;
 				_authentication.userName = authData.userName;
 				_authentication.useRefreshTokens = authData.useRefreshTokens;
@@ -150,12 +142,6 @@
 
 		}
 
-	
-
-
-
-
-	
 		function _getPRole(roles) {
 			var prole = '';
 			if (roles)
