@@ -21,6 +21,34 @@
 		    caseInsensitiveMatch: true
 		});
 
+		$routeProvider.when("/refresh", {
+		    controller: "refreshController",
+		    templateUrl: viewPath + "refresh/refresh.html",
+		    controllerAs: 'vm',
+		    caseInsensitiveMatch: true
+		});
+
+		$routeProvider.when("/categories", {
+		    controller: "categoriesController",
+		    templateUrl: viewPath + "categories/list.html",
+		    controllerAs: 'vm',
+		    caseInsensitiveMatch: true
+		});
+
+		$routeProvider.when("/categories/create", {
+		    controller: "categoriesController",
+		    templateUrl: viewPath + "categories/item.html",
+		    controllerAs: 'vm',
+		    caseInsensitiveMatch: true
+		});
+
+		$routeProvider.when("/categories/edit/:id", {
+		    controller: "categoriesController",
+		    templateUrl: viewPath + "categories/item.html",
+		    controllerAs: 'vm',
+		    caseInsensitiveMatch: true
+		});
+
 		
 
 		$routeProvider.otherwise({ redirectTo: "/" });

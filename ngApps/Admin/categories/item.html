@@ -1,0 +1,56 @@
+﻿
+
+<div class="well">
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand" ng-show="vm.viewMode===2">Create Category</div>
+                <div class="navbar-brand" ng-show="vm.viewMode===3">Edit Category</div>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="navbar-form navbar-left ng-pristine ng-valid" role="search">
+                        <div class="btn-toolbar">
+                            <div class="btn-group">
+                                <button class="btn btn-success" ng-click="vm.refreshList()"><i class="fa fa-refresh"></i></button>
+                                <a href="#/categories/create" class="btn btn-success" style="color: #fff !important"><i class="fa fa-plus-circle"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <form class="form-horizontal" name="NewItemForm" role="form" novalidate ng-submit="Save()">
+        <div class="form-group">
+            <label for="Name" class="col-lg-3 control-label">Name</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="Name" placeholder="Name" name="Name" ng-model="NewItem.Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Description" class="col-lg-3 control-label">Description</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="Description" placeholder="Description" name="Description" ng-model="NewItem.Description">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="IsActive" class="col-lg-3 control-label">Is Active</label>
+            <div class="col-lg-5">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="IsActive" placeholder="Language" name="IsActive" ng-model="NewItem.IsActive">
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-success" ng-disabled="NewItemForm.$invalid">Submit</button>
+                <a href="#/categories" class="btn" ng-click="vm.viewMode=1">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <!-- Title here -->
-    <title>OneColor With Slider - Responsive HTML5/CSS3 Template</title>
+    <title>Channel9 Demo App [Admin] - from the desk of Pinal Bhatt</title>
     <!-- Description, Keywords and Author -->
     <meta name="description" content="Your description">
     <meta name="keywords" content="Your,Keywords">
@@ -109,6 +109,23 @@
                             <!-- Each entry should be enclosed inside div with the class "entry" -->
                             
                             <div class="container-fluid">
+                                <ul class="breadcrumb">
+                                    <li>You are here : </li>
+                                    <li>
+                                        <!-- First link with divider -->
+                                        <a href="#">Home</a>
+                                    </li>
+                                    <li>
+                                        <!-- 2nd link -->
+                                        <a href="#">Library</a>
+                                    </li>
+                                    <li class="active">Data</li>
+                                </ul>
+                                <div class="entry padd-zero">
+                                    <div class="padd">
+                                        <h2>Categories</h2>
+                                    </div>
+                                </div>
                                 <div data-ng-view="">
                                 </div>
                             </div>
@@ -198,7 +215,7 @@
 
 
     <!-- Custom JS -->
-    <script src="../assets/js/custom.js"></script>
+    <script src="../assets/js/custom.admin.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
@@ -230,7 +247,11 @@
     <script src="../ngApps/Admin/app/C9Admin.controller.js"></script>
     <script src="../ngApps/Admin/home/homeController.js"></script>
     <script src="../ngApps/Admin/logout/logoutController.js"></script>
-
+    <script src="../ngApps/Admin/refresh/refreshController.js"></script>
+    <script src="../ngApps/Admin/categories/categoryFactory.js"></script>
+    <script src="../ngApps/Admin/categories/categoriesController.js"></script>
+    <script src="../ngApps/Admin/categories/createCategoriesController.js"></script>
+    <script src="../ngApps/Admin/categories/editCategoriesController.js"></script>
     <!-- This Page Script -->
     <script>
     </script>

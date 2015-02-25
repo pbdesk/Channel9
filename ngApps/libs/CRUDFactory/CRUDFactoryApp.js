@@ -14,18 +14,27 @@
         }]);
 })();
 
+/*
+ dObj :{
+ name: '',
+ cacheKey: '',
+ apiUrl: ''
+ items: []
+ }
+ */
+
 (function () {
     'use strict';
 
     var serviceId = 'CRUDFactory';
     angular.module('CRUDFactoryApp').factory(serviceId, ["$http", "$q", 'CacheFactory',  CRUDFactory]);
-    function CRUDFactory($http, $q, CacheFactory) {
+    function CRUDFactory($http, $q, localStorageService) {
 
         //#region Internal Methods        
 
-        var _isReady = function (config) {
-            if (CacheFactory.IsSessionCacheDefined(config.cacheKey)) {
-                angular.copy(CacheFactory.GetSessionCache(config.cacheKey), config.items);
+        var _isReady = function (dObj) {
+            if (CacheFactory.IsSessionCacheDefined(dObj.cacheKey)) {
+                angular.copy(CacheFactory.GetSessionCache(dObj.cacheKey), dObj.items);
                 return true;
             }
             else

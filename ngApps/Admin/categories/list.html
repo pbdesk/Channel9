@@ -1,0 +1,57 @@
+﻿
+<nav class="navbar navbar-default ">
+    <div class="container-fluid">
+        <div class="navbar-form navbar-left">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-filter"></i></span>
+                    <input type="text" class="form-control" placeholder="filter" ng-model="filter.label">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="filter=''" ng-disabled="filter == ''"><i class="fa fa-remove"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <div class="navbar-form navbar-left ng-pristine ng-valid" role="search">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn btn-success" ng-click="vm.refreshList()"><i class="fa fa-refresh"></i></button>
+                            <a href="#/categories/create" class="btn btn-success" style="color: #fff !important" ng-click="alert(vm.viewMode)"><i class="fa fa-plus-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <!--icon: null
+    id: 1
+    imageUrl: null
+    isFeatured: true
+    itemsCount: 5
+    label: "Featured"-->
+    <div class="row">
+        <table class="table table-striped table-hover  table-responsive">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th ng-click="vm.sort('label')" style="cursor:pointer">Category</th>
+                    <th ng-click="vm.sort('itemsCount')" style="cursor:pointer">Items</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in vm.items | filter: filter | orderBy:vm.sortField:vm.sortReverse">
+                    <td><i class="fa fa-flag-checkered fa-lg" ng-show="item.isFeatured"></i></td>
+                    <td>{{item.label}}</td>
+                    <td>{{item.itemsCount}}</td>
+                    <td><a href="#/categories/edit/{{item.id}}" ng-click="vm.viewMode=3"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            </tbody>
+        </table> 
+
+    </div>
+</div>
