@@ -5,15 +5,27 @@
         .module('PBDesk.C9Admin')
         .controller('refreshController', refreshController);
 
-    refreshController.$inject = ['$location']; 
+    refreshController.$inject = ['$location', 'Logger', 'AuthService'];
 
-    function refreshController($location) {
-        /* jshint validthis:true */
+    function refreshController($location, Logger, AuthService) {
+
         var vm = this;
-        vm.title = 'refreshController';
+
 
         init();
 
-        function init() { }
+        function init() {
+            var gotoUrl = $location.search().url;
+            AuthService.refreshToken().then(function (response) {
+                Logger.info('...Token Refreshed.')
+                $location.url(gotoUrl);
+            },
+             function (err) {
+                 //$location.path('/login');
+                 window.location = "/Login";
+             });
+
+        }
     }
 })();
+

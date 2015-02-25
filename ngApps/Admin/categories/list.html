@@ -18,7 +18,7 @@
                     <div class="btn-toolbar">
                         <div class="btn-group">
                             <button class="btn btn-success" ng-click="vm.refreshList()"><i class="fa fa-refresh"></i></button>
-                            <a href="#/categories/create" class="btn btn-success" style="color: #fff !important" ng-click="alert(vm.viewMode)"><i class="fa fa-plus-circle"></i></a>
+                            <a href="#/Categories/Create" class="btn btn-success" style="color: #fff !important" ><i class="fa fa-plus-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <td><i class="fa fa-flag-checkered fa-lg" ng-show="item.isFeatured"></i></td>
                     <td>{{item.label}}</td>
                     <td>{{item.itemsCount}}</td>
-                    <td><a href="#/categories/edit/{{item.id}}" ng-click="vm.viewMode=3"><i class="fa fa-edit"></i></a></td>
+                    <td><a href="#/Categories/Edit/{{item.id}}" ><i class="fa fa-edit"></i></a></td>
                 </tr>
             </tbody>
         </table> 

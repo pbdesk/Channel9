@@ -61,12 +61,12 @@
 
         function _getItemsFromDB() {
             var deferred = $q.defer();
-            _items = [];
+            //_items = [];
             $http.get(apiUrl + 'C9Data/Categories')
                        .success(function (result, status, headers, httpconfig) {
                            angular.copy(result, _items);
                            localStorageService.set(cacheKey, _items);
-                           deferred.resolve(_items);                                               
+                           deferred.resolve();                                               
                        })
                        .error(function (result, status, headers, httpconfig) {
                            deferred.reject(result, status);
@@ -76,12 +76,11 @@
 
         function _getItemFromDB(id) {
             var deferred = $q.defer();
-            _items = [];
-            $http.get(apiUrl + 'C9Data/Categories')
+            $http.get(apiUrl + 'C9Data/Category/ById/' + id)
                        .success(function (result, status, headers, httpconfig) {
-                           angular.copy(result, _items);
+                           replaceItemInArr(_items, result);
                            localStorageService.set(cacheKey, _items);
-                           deferred.resolve(_items);
+                           deferred.resolve(result);
                        })
                        .error(function (result, status, headers, httpconfig) {
                            deferred.reject(result, status);
@@ -89,26 +88,40 @@
             return deferred.promise;
         }
 
-        function _getItem (id) {
+        function _getItem(id, hardRefresh) {
+            if (typeof (hardRefresh) === 'undefined') hardRefresh = false;
+            var deferred = $q.defer();
+            if (hardRefresh === true) {                
+                _getItemFromDB(id).then(function (result) {
+                    deferred.resolve(result);
+                }, function (result, status) {
+                    deferred.reject(result, status);
+                });
+                return deferred.promise;
+            }
             if (_isReady()) {
                 var result = $.grep(_items, function (e) { return e.id == id; });
                 if (result.length == 0) {
-                    return null;
+                    deferred.resolve(null);
                 } else if (result.length == 1) {
-                    return result[0];
+                    deferred.resolve(result[0]);
                 } else {
-                    return null;
+                    deferred.resolve(null);
                 }
             }
-            else
-                return null;
+            else {
+                deferred.resolve(null);
+            }
+            return deferred.promise;
         }
 
         function _addItem(newItem) {
             var deferred = $q.defer();
 
             $http.post(apiUrl + 'C9Admin/Category/Create', newItem)
-                .success(function (result, status, headers, httpconfig) {
+                .success(function (result, status, headers, httpconfig) {                    
+                    result.itemsCount = result.items.length;
+                    delete result.items;
                     _items.splice(0, 0, result);
                     localStorageService.set(cacheKey, _items);
                     deferred.resolve(result);
@@ -134,16 +147,16 @@
                     });
 
                     if (foundAtIndex >= 0) {
-                        angular.copy(result, _items[foundAtIndex]);
+                        angular.copy(updItem, _items[foundAtIndex]);
                         localStorageService.set(cacheKey, _items);
                     }
 
                     
                     deferred.resolve();
                 },
-                function () {
+                function (result, status, headers, httpconfig) {
                     //error
-                    deferred.reject();
+                    deferred.reject(result, status, headers, httpconfig);
                 }
             );
 
@@ -169,5 +182,20 @@
             return deferred.promise;
 
         }
+
+        //#region Private Functions
+        function replaceItemInArr(array, item) {
+            var foundAtIndex = -1;
+            $.each(array, function (index, value) {
+                if (value.id === item.id) {
+                    foundAtIndex = index;
+                }
+            });
+
+            if (foundAtIndex >= 0) {
+                angular.copy(item, array[foundAtIndex]);
+            }
+        }
+        //#endregion
     }
 })();
