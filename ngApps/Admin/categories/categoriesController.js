@@ -26,7 +26,12 @@
         init();
 
         vm.refreshList = function () {
-            getItems(true);
+            if (vm.viewMode === 1) {
+                getItems(true);
+            }
+            else if (vm.viewMode === 3) {
+                getItem($routeParams.id, true);
+            }
 
         }
 
