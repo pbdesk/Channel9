@@ -1,0 +1,72 @@
+﻿<div class="entry padd-zero">
+    <div class="padd">
+        <h2>Categories</h2>
+    </div>
+</div>
+
+<div class="well">
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand" ng-show="vm.viewMode===2">Create Category</div>
+                <div class="navbar-brand" ng-show="vm.viewMode===3">Edit Category</div>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="navbar-form navbar-left ng-pristine ng-valid" role="search">
+                        <div class="btn-toolbar">
+                            <div class="btn-group">
+                                <button class="btn btn-success" ng-click="vm.refreshList()" ng-hide="vm.viewMode===2"><i class="fa fa-refresh"></i></button>
+                                <a href="#/categories/create" class="btn btn-success" style="color: #fff !important" ng-show="vm.viewMode===1"><i class="fa fa-plus-circle"></i></a>
+                                <button class="btn btn-success" style="color: #fff !important" ng-show="vm.viewMode===3" ng-click="vm.delete()"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <form class="form-horizontal" name="itemForm" role="form" novalidate ng-submit="vm.save()">
+        <div class="form-group">
+            <label for="Name" class="col-lg-3 control-label">Name</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="itemName" placeholder="Name" name="itemName" ng-model="vm.item.label" autofocus required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="itemIcon" class="col-lg-3 control-label">Icon</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="itemIcon" placeholder="fa Icon" name="itemIcon" ng-model="vm.item.icon">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="itemImageUrl" class="col-lg-3 control-label">Image Url</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="itemImageUrl" placeholder="Image Url" name="itemImageUrl" ng-model="vm.item.imageUrl">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="itemIsFeatured" class="col-lg-3 control-label">Is Featured?</label>
+            <div class="col-lg-5">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="itemIsFeatured" placeholder="Language" name="itemIsFeatured" ng-model="vm.item.isFeatured">
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="itemItmeCount" class="col-lg-3 control-label">Items</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="itemItmeCount" name="itemItmeCount" ng-model="vm.item.itemsCount" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-success" ng-disabled="NewItemForm.$invalid">Submit</button>
+                <a href="#/categories" class="btn" ng-click="vm.viewMode=1">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -49,7 +49,12 @@
 		    caseInsensitiveMatch: true
 		});
 
-		
+		$routeProvider.when("/Items", {
+		    controller: "itemsController",
+		    templateUrl: viewPath + "items/list.html",
+		    controllerAs: 'vm',
+		    caseInsensitiveMatch: true
+		});
 
 		$routeProvider.otherwise({ redirectTo: "/" });
 	}
