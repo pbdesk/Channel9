@@ -10,6 +10,7 @@
     function editItemController($location, $routeParams, Logger, itemsFactory) {
         /* jshint validthis:true */
         var vm = this;
+        vm.viewMode = 2; // 1=Add, 2=Edit  as both are using same view item.html
         vm.title = "Edit Item";
         vm.currentId = $routeParams.id;
         vm.item = {};
@@ -17,6 +18,32 @@
         vm.availableCats = [];
         vm.selectedCats = [];
 
+        vm.save = function () {
+            itemsFactory.updItem(vm.item).then(function (response) {
+                Logger.success('Record Updated');
+
+                var catsToUpd = [];
+                $.each(vm.selectedCats, function(i, o){
+                    catsToUpd.push(o.id);
+                });
+
+                itemsFactory.updateCatsForItem(vm.currentId, catsToUpd).then(function () {
+                    Logger.success('Categories Updated');
+                }, function (error) {
+                    Logger.error('error in category updates');
+                });
+            }, function (error) {
+                Logger.error('error in update');
+            });
+        }
+
+        vm.delete = function () {
+
+        }
+
+        vm.refresh = function () {
+
+        }
 
         init();
 
