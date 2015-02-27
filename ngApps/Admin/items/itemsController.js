@@ -3,97 +3,41 @@
 
     angular
         .module('PBDesk.C9Admin')
-        .controller('categoriesController', categoriesController);
+        .controller('itemsController', itemsController);
 
-    categoriesController.$inject = ['$location', '$window', '$routeParams', 'Logger', 'categoryFactory'];
+    itemsController.$inject = ['$location',  'Logger', 'itemsFactory'];
 
-    function categoriesController($location, $window, $routeParams, Logger, categoryFactory) {
+    function itemsController($location,  Logger, itemsFactory) {
         /* jshint validthis:true */
         var vm = this;
         
-        vm.items = categoryFactory.items;
-        vm.item = {
-            id: 0 ,
-            imageUrl: '', 
-            isFeatured: false,
-            itemsCount: 0,
-            label: ''
+        vm.cats = [];
+        vm.items = [];
+        vm.showItems = false;
+        vm.isBusy = false;
+       
+        vm.selectCat = function (cat) {
+            vm.showItems = false;
+            vm.isBusy = true;
+            itemsFactory.getItemsByCat(cat).then(function (result) {
+                angular.copy(result, vm.items);
+                vm.isBusy = false;
+                vm.showItems = true;
+                vm.selectedCat = cat;
+                if (vm.items.length === 0) {
+                    Logger.info('Oops No Items Found For This Category');
+                }
+            }, function (error) {
+                Logger.error(error);
+            });
+            vm.isBusy = false;
+            
+            
         }
-        vm.viewMode = 0; //1- List, 2-Add, 3-Edit
-        vm.sortField = "label";
-        vm.sortReverse = false;
 
         init();
 
-        vm.refreshList = function () {
-            if (vm.viewMode === 1) {
-                getItems(true);
-            }
-            else if (vm.viewMode === 3) {
-                getItem($routeParams.id, true);
-            }
-
-        }
-
-        vm.sort = function (fieldName) {
-            if (vm.sortField === fieldName) {
-                vm.sortReverse = !vm.sortReverse;
-            }
-            else {
-                vm.sortField = fieldName;
-                vm.sortReverse = true;
-            }
-        }
-
-        vm.save = function () {
-            if (vm.viewMode === 2) {   //2-Add
-                categoryFactory.addItem(vm.item)
-                    .then(function () {
-                        //success
-                        Logger.success('record added');
-                        
-                        $window.location = '#/Categories';
-                    },
-                function () {
-                    //error
-                    Logger.error('error adding new record');
-                    //ToastError(PBDeskJS.StrUtils.Format("Error in createing new {0}[{0}sController]. Please refer to server logs.", config.sname));
-                });
-            }
-            else {
-                categoryFactory.updItem(vm.item)
-                    .then(
-                        function () {
-                            //success
-                            Logger.success('record updated');
-                            //ToastSuccess(PBDeskJS.StrUtils.Format("{0} information updated successfully", config.sname));
-                            $window.location = '#/Categories';
-                        },
-                        function () {
-                            //error
-                            Logger.error('error updating record');
-                            //ToastError(PBDeskJS.StrUtils.Format("Error while saving {0} information.[{0}sController.Save - Edit]", config.sname));
-                        }
-                    );
-                
-
-            }
-        }
-
-        vm.delete = function () {
-            if (vm.viewMode === 3) {
-                bootbox.confirm("Are you sure you want to delete this category?", function (result) {
-                    if (result === true) {
-                        categoryFactory.delItem(vm.item).then(function () {
-                            Logger.info("Record Deleted");
-                            $location.path('/Categories');
-                        }, function () {
-                            Logger.error('Oops some error in deletion');
-                        });
-                    }                    
-                });
-            }
-        }
+       
 
 
 
@@ -102,75 +46,25 @@
         
 
         function init() {
-            getItems(false);
-            setViewMode();            
+            getCats(false);
+                        
         }
 
-        function getItems(hardRefresh) {
+        function getCats(hardRefresh) {
             if (typeof (hardRefresh) === 'undefined') hardRefresh = false;
-            categoryFactory
-                .getItems(hardRefresh)
-                .then(function () {
-                    //Logger.info('Categories Loaded');
-                    //Logger.success(vm.items.length);
-                    ////angular.copy(result, vm.items);
-                }, function (result, status, headers, httpconfig) {
-                    //alert("error");
-                    if (result && result.message && result.message == "Authorization has been denied for this request.") {
-                        Logger.info('Refreshing Token...');
-                    }
-                    else {
-                        Logger.error("Opps, seems something went wrong...");
-                    }
-
-                });
-
-        }
-
-        function getItem(id, hardRefresh) {
-            if (typeof (hardRefresh) === 'undefined') hardRefresh = false;
-            categoryFactory
-                .getItem(id, hardRefresh)
+            itemsFactory
+                .getCategories(hardRefresh)
                 .then(function (result) {
-                    angular.copy(result, vm.item);
-                    Logger.info('Item Loaded');
-                    
-                    //angular.copy(result, vm.items);
+                    angular.copy(result, vm.cats);
+
                 }, function (result, status, headers, httpconfig) {
-                    //alert("error");
-                    if (result && result.message && result.message == "Authorization has been denied for this request.") {
-                        Logger.info('Refreshing Token...');
-                    }
-                    else {
-                        Logger.error("Opps, seems something went wrong...");
-                    }
+                    Logger.error("Opps, seems something went wrong...");
 
                 });
 
         }
 
-        function setViewMode() {
-            var url = $location.url().toLowerCase();
-            if (url.indexOf('/create') > 0) {
-                vm.viewMode = 2;
-                vm.item = {
-                    id: 0,
-                    imageUrl: '',
-                    isFeatured: false,
-                    itemsCount: 0,
-                    label: ''
-                }
-            }
-            else if (url.indexOf('/edit') > 0) {
-                vm.viewMode = 3;
-                getItem($routeParams.id, true);
 
-            }
-            else {
-                vm.viewMode = 1;               
-            }
-
-        }
 
     }
 })();

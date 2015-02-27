@@ -26,6 +26,7 @@
     <link href="../assets/css/blue.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/ngDraggable.css" rel="stylesheet" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/img/favicon/favicon.ico">
@@ -109,14 +110,7 @@
                             <!-- Each entry should be enclosed inside div with the class "entry" -->
                             
                             <div class="container-fluid">
-                                <ul class="breadcrumb">
-                                    
-                                    <li>
-                                        <!-- First link with divider -->
-                                        <a href="#/">Admin Home</a>
-                                    </li>
-                                    <li class="active">Categories</li>
-                                </ul>
+                                
                                 
                                 <div data-ng-view="">
                                 </div>
@@ -219,6 +213,7 @@
 
     <script src="../ngApps/libs/angular-loading-bar/loading-bar.min.js"></script>
     <script src="../ngApps/libs/angular-local-storage/angular-local-storage.min.js"></script>
+    <script src="../ngApps/libs/ngDraggable/ngDraggable.js"></script>
 
     <script src="../ngApps/libs/toastr/Toastr.module.js"></script>
     <script src="../ngApps/libs/toastr/Toastr.factory.js"></script>
@@ -243,7 +238,10 @@
     <script src="../ngApps/Admin/refresh/refreshController.js"></script>
     <script src="../ngApps/Admin/categories/categoryFactory.js"></script>
     <script src="../ngApps/Admin/categories/categoriesController.js"></script>
-
+    <script src="../ngApps/Admin/items/itemsFactory.js"></script>
+    <script src="../ngApps/Admin/items/itemsController.js"></script>
+    <script src="../ngApps/Admin/items/createItemController.js"></script>
+    <script src="../ngApps/Admin/items/editItemController.js"></script>
     <!-- This Page Script -->
     <script>
     </script>

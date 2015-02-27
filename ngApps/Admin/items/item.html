@@ -1,6 +1,6 @@
 ﻿<div class="entry padd-zero">
     <div class="padd">
-        <h2>Categories</h2>
+        <h2>Items</h2>
     </div>
 </div>
 
@@ -8,8 +8,7 @@
     <nav class="navbar navbar-default ">
         <div class="container-fluid">
             <div class="navbar-header">
-                <div class="navbar-brand" ng-show="vm.viewMode===2">Create Category</div>
-                <div class="navbar-brand" ng-show="vm.viewMode===3">Edit Category</div>
+                <div class="navbar-brand" >{{vm.title}}</div>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
@@ -27,46 +26,88 @@
             </ul>
         </div>
     </nav>
+    <!--bannerUrl: null
+    id: 1
+    imageUrl: null
+    itemCount: 0
+            labels: Array[4]
+            0: "Featured"
+            1: "Events"
+            2: "Shows"
+            3: "Series"
+            length: 4
+ 
+    title: "Test1"
+    url: null-->
     <form class="form-horizontal" name="itemForm" role="form" novalidate ng-submit="vm.save()">
         <div class="form-group">
             <label for="Name" class="col-lg-3 control-label">Name</label>
             <div class="col-lg-5">
-                <input type="text" class="form-control" id="itemName" placeholder="Name" name="itemName" ng-model="vm.item.label" autofocus required>
+                <input type="text" class="form-control" id="itemName" placeholder="Name" name="itemName" ng-model="vm.item.title" autofocus required>
             </div>
         </div>
         <div class="form-group">
-            <label for="itemIcon" class="col-lg-3 control-label">Icon</label>
+            <label for="imageUrl" class="col-lg-3 control-label">Image Url</label>
             <div class="col-lg-5">
-                <input type="text" class="form-control" id="itemIcon" placeholder="fa Icon" name="itemIcon" ng-model="vm.item.icon">
+                <input type="text" class="form-control" id="imageUrl" placeholder="Image Url" name="imageUrl" ng-model="vm.item.imageUrl">
             </div>
         </div>
         <div class="form-group">
-            <label for="itemImageUrl" class="col-lg-3 control-label">Image Url</label>
+            <label for="bannerUrl" class="col-lg-3 control-label">Banner Url</label>
             <div class="col-lg-5">
-                <input type="text" class="form-control" id="itemImageUrl" placeholder="Image Url" name="itemImageUrl" ng-model="vm.item.imageUrl">
+                <input type="text" class="form-control" id="bannerUrl" placeholder="Banner Url" name="bannerUrl" ng-model="vm.item.bannerUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="itemUrl" class="col-lg-3 control-label">Item Url</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="itemUrl" placeholder="Item Url" name="Item Url" ng-model="vm.item.url">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="itemIsFeatured" class="col-lg-3 control-label">Is Featured?</label>
+            <label for="itemCount" class="col-lg-3 control-label">itemCount</label>
             <div class="col-lg-5">
-                <label class="checkbox-inline">
-                    <input type="checkbox" id="itemIsFeatured" placeholder="Language" name="itemIsFeatured" ng-model="vm.item.isFeatured">
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="itemItmeCount" class="col-lg-3 control-label">Items</label>
-            <div class="col-lg-5">
-                <input type="text" class="form-control" id="itemItmeCount" name="itemItmeCount" ng-model="vm.item.itemsCount" disabled>
+                <input type="number" class="form-control" id="itemCount" placeholder="Item Count" name="itemCount" ng-model="vm.item.itemCount">
             </div>
         </div>
 
+
+
         <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
+            <div class="col-lg-offset-3 col-lg9">
+                <a href="#/Items" class="btn" ng-click="vm.viewMode=1">Cancel</a>
                 <button type="submit" class="btn btn-success" ng-disabled="NewItemForm.$invalid">Submit</button>
-                <a href="#/categories" class="btn" ng-click="vm.viewMode=1">Cancel</a>
+                
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 well">
+                <h4>Available Categories</h4>
+                <div ng-drop="true" ng-drop-success="vm.onDropComplete1($data,$event)" style="min-height:100px">
+                    <span class="title">&nbsp;</span>
+
+                    <div ng-repeat="obj in vm.availableCats" ng-drag="true" ng-drag-data="obj" ng-drag-success="vm.onDragSuccess1($data,$event)" ng-center-anchor="{{vm.centerAnchor}}">
+                        <h3 style="display: inline-block;margin:7px"><span class="label label-info">{{obj.label}}</span></h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                &nbsp;
+            </div>
+            <div class="col-md-5 well">
+                <h4>Seleted Categories</h4>
+                <div ng-drop="true" ng-drop-success="vm.onDropComplete2($data,$event)" style="min-height:100px">
+                    <span class="title">&nbsp;</span>
+
+                    <div ng-repeat="obj in vm.selectedCats" ng-drag="true" ng-drag-data="obj" ng-drag-success="vm.onDragSuccess2($data,$event)" ng-center-anchor="{{vm.centerAnchor}}">
+                        <h3 style="display: inline-block;margin:7px"><span class="label label-info">{{obj.label}}</span></h3>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </form>
 </div>

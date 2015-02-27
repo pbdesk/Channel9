@@ -56,6 +56,20 @@
 		    caseInsensitiveMatch: true
 		});
 
+		$routeProvider.when("/Items/Create", {
+		    controller: "createItemController",
+		    templateUrl: viewPath + "items/item.html",
+		    controllerAs: 'vm',
+		    caseInsensitiveMatch: true
+		});
+
+		$routeProvider.when("/Items/Edit/:id", {
+		    controller: "editItemController",
+		    templateUrl: viewPath + "items/item.html",
+		    controllerAs: 'vm',
+		    caseInsensitiveMatch: true
+		});
+
 		$routeProvider.otherwise({ redirectTo: "/" });
 	}
 })();
