@@ -37,9 +37,9 @@
         margin:20px auto;
         position: relative;
     }*/
-    /*[ng-drop].drag-enter{
-        border:solid 5px red;
-    }*/
+    [ng-drop].drag-enter{
+        border: dashed 1px #ccc;
+    }
     /*[ng-drop] span.title{
         display: block;
         position: absolute;

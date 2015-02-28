@@ -17,9 +17,9 @@
             getCategories: _getCategories,
             getItemsByCat: _getItemsByCat,
             getItem: _getItem,          
-            //addItem: _addItem,
+            addItem: _addItem,
             updItem: _updItem,
-            //delItem: _delItem
+            delItem: _delItem,
             updateCatsForItem: _updateCatsForItem
 
         };
@@ -116,23 +116,17 @@
          
 
 
-        //function _addItem(newItem) {
-        //    var deferred = $q.defer();
-
-        //    $http.post(apiUrl + 'C9Admin/Category/Create', newItem)
-        //        .success(function (result, status, headers, httpconfig) {                    
-        //            result.itemsCount = result.items.length;
-        //            delete result.items;
-        //            _items.splice(0, 0, result);
-        //            localStorageService.set(cacheKey, _items);
-        //            deferred.resolve(result);
-
-        //        })
-        //        .error(function (result, status, headers, httpconfig) {
-        //            deferred.reject(result, status);
-        //        });
-        //    return deferred.promise;
-        //}
+        function _addItem(newItem) {
+            var deferred = $q.defer();
+            $http.post(apiUrl + 'C9Admin/Item/Create', newItem)
+                .success(function (result, status, headers, httpconfig) {                    
+                    deferred.resolve(result);
+                })
+                .error(function (result, status, headers, httpconfig) {
+                    deferred.reject(result, status);
+                });
+            return deferred.promise;
+        }
 
         function _updItem(updItem) {
             var deferred = $q.defer();
@@ -153,29 +147,23 @@
 
 
 
-        //function _delItem(item) {
-        //    var deferred = $q.defer();
-        //    $http.delete(apiUrl + 'C9Admin/Category/Delete/' + item.id)
-        //    .then(
-        //        function (result, status, headers, httpconfig) {
-        //            //success
-        //            var foundAtIndex = indexOfInArr(_items, item);
-        //            if (foundAtIndex >= 0) {
-        //                _items.splice(foundAtIndex, 1);
-        //                localStorageService.set(cacheKey, _items);
-        //            }
-                    
-        //            deferred.resolve();
-        //        },
-        //        function () {
-        //            //error
-        //            deferred.reject();
-        //        }
-        //    );
+        function _delItem(item) {
+            var deferred = $q.defer();
+            $http.delete(apiUrl + 'C9Admin/Item/Delete/' + item.id)
+            .then(
+                function (result, status, headers, httpconfig) {
+                    //success                                       
+                    deferred.resolve();
+                },
+                function () {
+                    //error
+                    deferred.reject();
+                }
+            );
 
-        //    return deferred.promise;
+            return deferred.promise;
 
-        //}
+        }
 
         function _updateCatsForItem(itemId, catIds) {
             var data = {
