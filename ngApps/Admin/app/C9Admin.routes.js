@@ -70,6 +70,13 @@
 		    caseInsensitiveMatch: true
 		});
 
+		$routeProvider.when("/Filters", {
+		    controller: "filtersController",
+		    templateUrl: viewPath + "filters/filters.html",
+		    controllerAs: 'vm',
+		    caseInsensitiveMatch: true
+		});
+
 		$routeProvider.otherwise({ redirectTo: "/" });
 	}
 })();
