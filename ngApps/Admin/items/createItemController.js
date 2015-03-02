@@ -49,6 +49,7 @@
 
                 c9CRUDFactory.updateCatsForItem(response.id, catsToUpd).then(function () {
                     Logger.success('Categories Updated');
+                    $location.path('/Items');
                 }, function (error) {
                     Logger.error('error in category updates');
                 });

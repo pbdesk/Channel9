@@ -36,7 +36,7 @@
         }
 
         vm.refreshList = function () {
-            getItems(vm.currentCat);
+            getAllItems(vm.currentCat);
         }
 
         vm.save = function () {
@@ -66,7 +66,7 @@
 
         function init() {
             getAllCats(false);
-            getAllItems(false);
+            getAllItems(true);
                         
         }
 
@@ -84,15 +84,17 @@
 
         }
 
-        function getAllItems() {
+        function getAllItems(hardRefresh) {
+            if (typeof (hardRefresh) === 'undefined') hardRefresh = false;
             vm.showItems = false;
             vm.isBusy = true;
-            c9CRUDFactory.getAllLiteItems().then(function (result) {
+            c9CRUDFactory.getAllLiteItems(hardRefresh).then(function (result) {
                 angular.copy(result, vm.allItems);
 
                 if (vm.allItems.length === 0) {
                     Logger.info('Oops No Items Found');
                 }
+                getItemsVM();
             }, function (error) {
                 Logger.error(error);
             });
@@ -110,9 +112,7 @@
                 if (vm.selectedItems.length === 0) {
                     Logger.info('Oops No Items Found For This Category');
                 }
-                else {                    
-                    vm.showItems = true;
-                }
+                vm.showItems = true;
             }, function (error) {
                 Logger.error(error);
             });
