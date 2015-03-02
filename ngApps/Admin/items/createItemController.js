@@ -5,9 +5,9 @@
         .module('PBDesk.C9Admin')
         .controller('createItemController', createItemController);
 
-    createItemController.$inject = ['$location', 'Logger', 'itemsFactory'];
+    createItemController.$inject = ['$location', 'Logger', 'c9CRUDFactory'];
 
-    function createItemController($location,  Logger, itemsFactory) {
+    function createItemController($location, Logger, c9CRUDFactory) {
         /* jshint validthis:true */
         var vm = this;
         vm.viewMode = 1; // 1=Add, 2=Edit  as both are using same view item.html
@@ -25,8 +25,8 @@
 
         function getCats(hardRefresh) {
             if (typeof (hardRefresh) === 'undefined') hardRefresh = false;
-            itemsFactory
-                .getCategories(hardRefresh)
+            c9CRUDFactory
+                .getAllLiteCats(hardRefresh)
                 .then(function (result) {
                     angular.copy(result, vm.cats);
                     getAvailableSelectedCats()
@@ -39,7 +39,7 @@
         }
 
         vm.save = function () {
-            itemsFactory.addItem(vm.item).then(function (response) {
+            c9CRUDFactory.addItem(vm.item, 'C9Admin/Item/Create').then(function (response) {
                 Logger.success('Record Inserted');
 
                 var catsToUpd = [];
@@ -47,7 +47,7 @@
                     catsToUpd.push(o.id);
                 });
 
-                itemsFactory.updateCatsForItem(response.id, catsToUpd).then(function () {
+                c9CRUDFactory.updateCatsForItem(response.id, catsToUpd).then(function () {
                     Logger.success('Categories Updated');
                 }, function (error) {
                     Logger.error('error in category updates');

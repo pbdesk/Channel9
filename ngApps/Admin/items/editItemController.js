@@ -5,9 +5,9 @@
         .module('PBDesk.C9Admin')
         .controller('editItemController', editItemController);
 
-    editItemController.$inject = ['$location', '$routeParams', 'Logger', 'itemsFactory'];
+    editItemController.$inject = ['$location', '$routeParams', 'Logger', 'c9CRUDFactory'];
 
-    function editItemController($location, $routeParams, Logger, itemsFactory) {
+    function editItemController($location, $routeParams, Logger, c9CRUDFactory) {
         /* jshint validthis:true */
         var vm = this;
         vm.viewMode = 2; // 1=Add, 2=Edit  as both are using same view item.html
@@ -19,15 +19,14 @@
         vm.selectedCats = [];
 
         vm.save = function () {
-            itemsFactory.updItem(vm.item).then(function (response) {
+            c9CRUDFactory.updItem(vm.item, 'C9Admin/Item/Update').then(function (response) {
                 Logger.success('Record Updated');
-
                 var catsToUpd = [];
                 $.each(vm.selectedCats, function(i, o){
                     catsToUpd.push(o.id);
                 });
 
-                itemsFactory.updateCatsForItem(vm.currentId, catsToUpd).then(function () {
+                c9CRUDFactory.updateCatsForItem(vm.currentId, catsToUpd).then(function () {
                     Logger.success('Categories Updated');
                 }, function (error) {
                     Logger.error('error in category updates');
@@ -54,7 +53,7 @@
         }
 
         function getItem() {
-            itemsFactory
+            c9CRUDFactory
                 .getItem(vm.currentId)
                 .then(function (result) {
                     angular.copy(result, vm.item);
@@ -68,8 +67,8 @@
 
         function getCats(hardRefresh) {
             if (typeof (hardRefresh) === 'undefined') hardRefresh = false;
-            itemsFactory
-                .getCategories(hardRefresh)
+            c9CRUDFactory
+                .getAllLiteCats(hardRefresh)
                 .then(function (result) {
                     angular.copy(result, vm.cats);
                     getItem();

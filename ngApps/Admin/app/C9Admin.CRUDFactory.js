@@ -22,6 +22,7 @@
 
             getItem: _getItem,
             getAllLiteCats: _getAllLiteCats,
+            getAllCats: _getAllCats,
             getAllLiteItems: _getAllLiteItems,
             getLiteItemsByCat: _getLiteItemsByCat,
             getItemsByCat: _getItemsByCat,
@@ -129,6 +130,10 @@
 
         function _getAllLiteCats(hardRefresh) {
             return _getData('C9Data/Lite/Categories', 'cats', hardRefresh)
+        }
+
+        function _getAllCats(hardRefresh) {
+            return _getData('C9Data/Categories', '', hardRefresh)
         }
 
         function _getAllLiteItems(hardRefresh) {
