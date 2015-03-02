@@ -603,7 +603,7 @@ div.ppt {
 }
 
 .features-item .btn{ color:#555 !important; }
-        
+		
 /* Services */
 
 .service {
@@ -810,4 +810,10 @@ footer{
 
 @media (max-width: 979px){
 
+}
+
+/* Custom styles*/
+
+.social a.github i {
+background: #f63e28;
 }

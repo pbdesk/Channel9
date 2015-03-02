@@ -5,9 +5,9 @@
         .module('PBDesk.C9Admin')
         .controller('itemsController', itemsController);
 
-    itemsController.$inject = ['$location',  'Logger', 'itemsFactory'];
+    itemsController.$inject = ['$location', 'Logger', 'c9CRUDFactory'];
 
-    function itemsController($location,  Logger, itemsFactory) {
+    function itemsController($location,  Logger,c9CRUDFactory) {
         /* jshint validthis:true */
         var vm = this;
         
@@ -36,13 +36,6 @@
 
         init();
 
-       
-
-
-
-
-
-        
 
         function init() {
             getCats(false);
@@ -51,8 +44,8 @@
 
         function getCats(hardRefresh) {
             if (typeof (hardRefresh) === 'undefined') hardRefresh = false;
-            itemsFactory
-                .getCategories(hardRefresh)
+            c9CRUDFactory
+                .getAllLiteCats(hardRefresh)
                 .then(function (result) {
                     angular.copy(result, vm.cats);
 
@@ -66,7 +59,7 @@
         function getItems(cat) {
             vm.showItems = false;
             vm.isBusy = true;
-            itemsFactory.getItemsByCat(cat).then(function (result) {
+            c9CRUDFactory.getLiteItemsByCat(cat).then(function (result) {
                 angular.copy(result, vm.items);
                 vm.isBusy = false;
                 vm.showItems = true;
