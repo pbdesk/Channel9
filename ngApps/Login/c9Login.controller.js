@@ -49,15 +49,12 @@
 
         function init() {
             AuthService.fillAuthData();
-            alreadyLoggedInCheck();
+            if (AuthService.isLoggedIn()) {
+                window.location = "/Admin";
+            }
+            
         }
 
-        function alreadyLoggedInCheck() {
-            if (AuthService.isLoggedIn()) {
-                $('#already_logged_in').modal({
-                    backdrop: 'static'
-                });
-            }
-        }
+        
     }
 })();
