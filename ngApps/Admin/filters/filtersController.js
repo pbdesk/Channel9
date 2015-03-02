@@ -18,10 +18,12 @@
         vm.showItems = false;
         vm.isBusy = false;
         vm.currentCat = '';
+        vm.currentCatId = 0;
        
         
         vm.selectCat = function (cat) {
-            vm.currentCat = cat;
+            vm.currentCatId = cat.id;
+            vm.currentCat = cat.label;
             getItemsForCat(vm.currentCat);
             
             
@@ -37,7 +39,20 @@
             getItems(vm.currentCat);
         }
 
-        
+        vm.save = function () {
+            var itemsToUpd = [];
+            $.each(vm.items, function (i, o) {
+                if (o.isSelected === true) {
+                    itemsToUpd.push(o.id);
+                }
+            });
+
+            c9CRUDFactory.updateItemsForCat(vm.currentCatId, itemsToUpd).then(function () {
+                Logger.success('Items Updated');
+            }, function (error) {
+                Logger.error('error in Item updates');
+            });
+        }
 
         init();
 
